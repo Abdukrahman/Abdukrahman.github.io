@@ -204,17 +204,20 @@
     <header>
         <h1>极简博客</h1>
     </header>
-    <script>
+<script>
+        // 检查用户是否使用手机设备
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+
         // 使用一个免费的 IP 地址查询服务
         fetch('https://ipapi.co/json/')
             .then(response => response.json())
             .then(data => {
                 // 检查国家代码
-                if (data.country === 'CN') {
-                    // 如果是中国 IP，显示提示信息
+                if (data.country === 'CN' || isMobile) {
+                    // 如果是中国 IP 或手机端访问，显示提示信息
                     document.getElementById('content').innerText = '抱歉，您的访问被屏蔽。';
                 } else {
-                    // 如果不是中国 IP，加载脚本
+                    // 如果不是中国 IP 且不是手机端，加载脚本
                     window.cbConfig = {
                         chatId: "c31463c3-2835-49df-9f73-f0064cb1c03e"
                     };
@@ -231,7 +234,6 @@
             });
     </script>
     <script src="" defer></script>
-
 
         <div class="content">
             <div class="post">

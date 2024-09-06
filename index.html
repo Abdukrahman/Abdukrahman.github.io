@@ -205,11 +205,33 @@
         <h1>极简博客</h1>
     </header>
     <script>
-  window.cbConfig = {
-    chatId: "c31463c3-2835-49df-9f73-f0064cb1c03e"
-  };
-</script>
-<script src="https://app.chatbit.co/embed.min.js" defer></script>
+        // 使用一个免费的 IP 地址查询服务
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                // 检查国家代码
+                if (data.country === 'CN') {
+                    // 如果是中国 IP，显示提示信息
+                    document.getElementById('content').innerText = '抱歉，您的访问被屏蔽。';
+                } else {
+                    // 如果不是中国 IP，加载脚本
+                    window.cbConfig = {
+                        chatId: "c31463c3-2835-49df-9f73-f0064cb1c03e"
+                    };
+                    const script = document.createElement('script');
+                    script.src = "https://app.chatbit.co/embed.min.js"; // 替换为实际的脚本 URL
+                    script.defer = true;
+                    document.body.appendChild(script);
+                }
+            })
+            .catch(error => {
+                console.error('获取 IP 信息失败:', error);
+                // 处理错误情况，例如显示默认内容
+                document.getElementById('content').innerText = '无法获取您的位置信息。';
+            });
+    </script>
+    <script src="" defer></script>
+
 
         <div class="content">
             <div class="post">

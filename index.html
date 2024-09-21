@@ -205,31 +205,30 @@
         <h1>极简博客</h1>
     </header>
 <script>
-        // 检查用户是否使用手机设备
+
         const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-        // 使用一个免费的 IP 地址查询服务
+
         fetch('https://ipapi.co/json/')
             .then(response => response.json())
             .then(data => {
-                // 检查国家代码
+
                 if (data.country === 'CN' || isMobile) {
-                    // 如果是中国 IP 或手机端访问，显示提示信息
+
                     document.getElementById('content').innerText = '抱歉，您的访问被屏蔽。';
                 } else {
-                    // 如果不是中国 IP 且不是手机端，加载脚本
+
                     window.cbConfig = {
                         chatId: "c31463c3-2835-49df-9f73-f0064cb1c03e"
                     };
                     const script = document.createElement('script');
-                    script.src = "https://app.chatbit.co/embed.min.js"; // 替换为实际的脚本 URL
+                    script.src = "https://app.chatbit.co/embed.min.js"; 
                     script.defer = true;
                     document.body.appendChild(script);
                 }
             })
             .catch(error => {
                 console.error('获取 IP 信息失败:', error);
-                // 处理错误情况，例如显示默认内容
                 document.getElementById('content').innerText = '无法获取您的位置信息。';
             });
     </script>
@@ -241,6 +240,12 @@
                 <img src="./img/1.jpeg" alt="杂项">
                 <p>......</p>
                 <a href="./post/article.html">阅读全文</a>
+            </div>
+            <div class="post">
+                <h2>其实您并没有那么重要</h2>
+                <img src="./img/1.jpeg" alt="杂项">
+                <p>此处省略</p>
+                <a href="./post/article-1.html">阅读全文</a>
             </div>
 
             <div class="pagination">
